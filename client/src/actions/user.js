@@ -1,3 +1,14 @@
+export const tryFetchUser = (cb) => {
+  return (dispatch) => {
+    fetch('/api/auth/user', {
+      method: 'GET',
+      credentials: 'include'
+    }).then( res => res.json() )
+      .then( user => dispatch(currentUser(user)) )
+      .then( () => cb() )
+  }
+}
+
 export const logout = () => {
   return(dispatch) => {
     fetch('/api/auth/sign_out', {

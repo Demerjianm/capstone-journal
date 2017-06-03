@@ -5,7 +5,7 @@ import { Header } from 'semantic-ui-react';
 const Home = ({ username }) => (
   <div>
     <Header as="h3">
-      { username ? `Welcome ${username}` : 'Welcome please sign in' }
+      { username ? `Welcome ${username}` : 'This is the About page' }
     </Header>
   </div>
 )

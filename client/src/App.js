@@ -5,6 +5,8 @@ import Home from './components/Home';
 import About from './components/About';
 import Auth from './components/Auth';
 import Journal from './components/Journal'
+import FetchUser from './components/FetchUser';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => (
   <div>
@@ -16,7 +18,7 @@ const App = () => (
         <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
         <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
       </Switch>
-    </FetchUser>  
+    </FetchUser>
   </div>
 );
 
