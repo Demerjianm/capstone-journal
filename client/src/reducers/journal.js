@@ -1,8 +1,8 @@
 //{ type: 'DELETE_NOTE' id: 'ssdj3r44klj43lk5j43' }
-const entry = ( state = [], action ) => {
+const journal = ( state = [], action ) => {
   switch (action.type) {
     case 'ENTRY':
-      return action.entry
+      return action.entries
     case 'ADD_ENTRY':
       return [ action.entry, ...state ]
     case 'UPDATE_ENTRY':
@@ -18,4 +18,4 @@ const entry = ( state = [], action ) => {
   }
 }
 
-export default entries;
+export default journal;

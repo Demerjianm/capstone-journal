@@ -5,7 +5,7 @@ export const getEntries = () => {
   return(dispatch) => {
     fetch('/api/journal')
       .then( res => res.json() )
-      .then( journal => dispatch({ type: 'ENTRY', entry }))
+      .then( entries => dispatch({ type: 'ENTRY', entries }))
   }
 }
 
@@ -20,7 +20,7 @@ export const addEntry = (title, body) => {
       },
       body: JSON.stringify({ title, body })
     }).then( res => res.json() )
-      .then( journal => dispatch({ type: 'ADD_ENTRY', entry }))
+      .then( entry => dispatch({ type: 'ADD_ENTRY', entry }))
   }
 }
 
@@ -35,7 +35,7 @@ export const updateEntry = (id, title, body) => {
       },
       body: JSON.stringify({ title, body})
     }).then( res => res.json() )
-      .then( journal => dispatch({ type: 'UPDATE_ENTRY', entry }))
+      .then( entry => dispatch({ type: 'UPDATE_ENTRY', entry }))
   }
 }
 

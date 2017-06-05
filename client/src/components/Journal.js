@@ -12,13 +12,13 @@ class Journal extends Component {
 
 
   displayEntries = () => {
-     return this.props.entry.map( note => {
+     return this.props.entry.map( ent => {
       return (
-        <li key={entry._id} className="collection-item">
+        <li key={ent._id} className="collection-item">
           <div>
-            { entry.title }
+            { ent.title }
             <span className="secondary-content">
-              <Link to={`/journal/${entry._id}`}>
+              <Link to={`/journal/${ent._id}`}>
                 <i className="material-icons">send</i>
               </Link>
             </span>
@@ -32,9 +32,9 @@ class Journal extends Component {
     return(
       <div className='container'>
       <div>
-        <Header as="h2">{username}</Header>
-        <Header as="h3">{_id}</Header>
-        <Header as="h3">{role}</Header>
+        <Header as="h2">{this.username}</Header>
+        <Header as="h3">{this._id}</Header>
+        <Header as="h3">{this.role}</Header>
       </div>
         <h4>My Journal</h4>
         <hr />
@@ -44,7 +44,7 @@ class Journal extends Component {
           </div>
           <div className='col s12 m6'>
             <ul className='collection'>
-              { this.displayJournal() }
+              { this.displayEntries() }
             </ul>
           </div>
         </div>
@@ -55,7 +55,7 @@ class Journal extends Component {
 
 
 const mapStateToProps = (state) => {
-  return { journal: state.journal }
+  return { entry: state.journal }
 }
 
 export default connect(mapStateToProps)(Journal);

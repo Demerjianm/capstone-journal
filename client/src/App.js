@@ -17,6 +17,7 @@ const App = () => (
         <Route path="/about" component={About} />
         <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
         <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
+        <ProtectedRoute path="/journal" component={Journal} />
       </Switch>
     </FetchUser>
   </div>

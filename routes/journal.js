@@ -10,18 +10,19 @@ const Journal = require('../models/journal');
 
 // Journal index, getting all the entries
 router.get('/', (req, res) => {
-  Entry.find( ( err, notes) => {
-    res.json(entry);
+  Journal.find( ( err, entries) => {
+    res.json(entries);
   });
 });
+
 
 // creating a new entry
 router.post('/', (req, res) => {
   let { title, body } = req.body;
-  new Entry({
+  new Journal({
     title,
     body
-  }).save( (err, note) => {
+  }).save( (err, entry) => {
     if (err)
       return res.json(err);
     return res.json(entry);
@@ -31,7 +32,7 @@ router.post('/', (req, res) => {
 //updates an entry
 router.put('/:id', (req, res) => {
   let { title, body } = req.body;
-  Entry.findByIdAndUpdate(
+  Journal.findByIdAndUpdate(
     req.params.id,
     { $set: { title, body, updatedAt: Date.now() }},
     { new: true },
@@ -44,7 +45,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  Entry.findByIdAndRemove(req.params.id, (err) => {
+  Journal.findByIdAndRemove(req.params.id, (err) => {
     if (err)
       return res.json(err)
     return res.sendStatus(204);

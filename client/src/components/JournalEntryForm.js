@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addJournalEntry } from '../actions/journalentry';
+import { addEntry } from '../actions/journalentry';
 
-const NoteForm = ({ dispatch }) => {
+const JournalEntryForm = ({ dispatch }) => {
   let title, body, form;
 
 
@@ -13,7 +13,7 @@ const NoteForm = ({ dispatch }) => {
         ref={ n => form = n }
         onSubmit={ e => {
           e.preventDefault();
-          dispatch(addJournalEntry(title.value, body.value))
+          dispatch(addEntry(title.value, body.value))
           form.reset();
         }}
       >
@@ -27,4 +27,4 @@ const NoteForm = ({ dispatch }) => {
 
 // when you connect a component, you get dispatch as a prop
 // mapStateToProps - grabs state out of redux and passes it as props
-export default connect()(NoteForm);
+export default connect()(JournalEntryForm);
