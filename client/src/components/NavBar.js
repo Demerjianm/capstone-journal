@@ -10,7 +10,7 @@ const links = [
 ]
 
 const authenticatedLinks = [
-  { name: 'Dashboard', path: '/dashboard' },
+  { name: 'Journal', path: '/journal' },
   { name: 'Logout' }
 ]
 

@@ -9,18 +9,21 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/journal');
+const dbUrl = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost/capstone-journal-dpl'
+mongoose.connect(dbUrl);
 
 const app = express();
 
 //AUTH CONTROLLER
 const auth = require('./routes/auth');
+const entries = require('./routes/journal');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, './client/build')));
+
 
 //SETUP EXPRESS SESSION
 app.use(require('express-session')({
@@ -44,6 +47,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //AUTH ROUTES
 app.use('/api/auth', auth);
+app.use('/api/journal', entries);
 
 app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
