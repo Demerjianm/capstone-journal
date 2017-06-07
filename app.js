@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/journal');
+const dbUrl = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost/capstone-journal-dpl'
+mongoose.connect(dbUrl);
 
 const app = express();
 
