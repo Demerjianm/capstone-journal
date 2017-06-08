@@ -11,6 +11,7 @@ const links = [
 
 const authenticatedLinks = [
   { name: 'Journal', path: '/journal' },
+  { name: 'History', path: '/history' },
   { name: 'Logout' }
 ]
 

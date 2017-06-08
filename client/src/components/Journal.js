@@ -42,11 +42,6 @@ class Journal extends Component {
           <div className='col s12 m6'>
             <JournalEntryForm />
           </div>
-          <div className='col s12 m6'>
-            <ul className='collection'>
-              { this.displayEntries() }
-            </ul>
-          </div>
         </div>
       </div>
     );

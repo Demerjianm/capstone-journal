@@ -8,6 +8,7 @@ import NoMatch from './components/NoMatch';
 import Journal from './components/Journal'
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
+import JournalHistory from './components/JournalHistory'
 
 const App = () => (
   <div>
@@ -18,6 +19,7 @@ const App = () => (
         <Route path="/about" component={About} />
         <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
         <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
+        <ProtectedRoute path='/history' component={JournalHistory} />
         <ProtectedRoute path="/journal" component={Journal} />
         <Route component={NoMatch} />
       </Switch>
