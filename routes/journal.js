@@ -18,10 +18,11 @@ router.get('/', (req, res) => {
 
 // creating a new entry
 router.post('/', (req, res) => {
-  let { title, body } = req.body;
+  let { title, body, image } = req.body;
   new Journal({
     title,
-    body
+    body,
+    image,
   }).save( (err, entry) => {
     if (err)
       return res.json(err);
@@ -31,10 +32,10 @@ router.post('/', (req, res) => {
 
 //updates an entry
 router.put('/:id', (req, res) => {
-  let { title, body } = req.body;
+  let { title, body, image } = req.body;
   Journal.findByIdAndUpdate(
     req.params.id,
-    { $set: { title, body, updatedAt: Date.now() }},
+    { $set: { title, body, image, updatedAt: Date.now() }},
     { new: true },
     ( err, entry ) => {
       if (err)

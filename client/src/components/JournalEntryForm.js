@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addEntry } from '../actions/journalentry';
 
 const JournalEntryForm = ({ dispatch }) => {
-  let title, body, form;
+  let title, body, form, image;
 
 
   return (
@@ -18,7 +18,10 @@ const JournalEntryForm = ({ dispatch }) => {
         }}
       >
         <input ref={ n => title = n } placeholder="Title" />
+        <br />
         <textarea ref={ n => body = n } placeholder="Entry Body"></textarea>
+        <br />
+        <input ref={ n => image = n } placeholder="Add Links" />
         <button className="btn">Save</button>
       </form>
     </div>

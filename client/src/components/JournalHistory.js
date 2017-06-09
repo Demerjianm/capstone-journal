@@ -22,6 +22,8 @@ class JournalHistory extends Component {
             { ent.title }
             <h5>Body</h5>
             { ent.body }
+            <h5>Img Links</h5>
+            { ent.image }
             <div style={{ cursor: 'pointer' }}>
                 <i className="material-icons" onClick={() => this.toggleEdit(ent._id)}>edit</i>
                 <i className="material-icons" onClick={() => this.props.dispatch(deleteEntry(ent._id))}>Delete</i>

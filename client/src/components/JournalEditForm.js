@@ -6,7 +6,7 @@ class JournalEditForm extends Component {
   entry = this.props.entries.find( ent => ent._id === this.props.id);
 
 render() {
-    let { title, body, _id } = this.entry
+    let { title, body, image, _id } = this.entry
 
   return (
     <div>
@@ -16,13 +16,14 @@ render() {
         onSubmit={ e => {
           e.preventDefault();
           this.props.toggleEdit()
-          this.props.dispatch(updateEntry( _id , this.title.value, this.body.value))
+          this.props.dispatch(updateEntry( _id , this.title.value, this.body.value, this.image.value))
         }}
       >
         <input ref={ n => this.title = n } placeholder={title} />
         <textarea ref={ n => this.body = n } placeholder={body} />
+        <input ref={ n => this.image = n } placeholder={image} />
         <button className="btn">Save</button>
-      </form>    
+      </form>
     </div>
     )
   }
