@@ -19,11 +19,13 @@ render() {
           this.props.dispatch(updateEntry( _id , this.title.value, this.body.value, this.image.value))
         }}
       >
-        <input ref={ n => this.title = n } placeholder={title} />
-        <textarea ref={ n => this.body = n } placeholder={body} />
+        <input ref={ n => this.title = n } defaultValue={title} />
+        <textarea ref={ n => this.body = n } defaultValue={body} />
         <input ref={ n => this.image = n } placeholder={image} />
         <button className="btn">Save</button>
+        <button className='btn' onClick={() => this.props.toggleEdit()}>Back</button>
       </form>
+
     </div>
     )
   }
