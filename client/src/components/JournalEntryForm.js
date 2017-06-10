@@ -22,7 +22,6 @@ const JournalEntryForm = ({ dispatch }) => {
         <br />
         <textarea ref={ n => body = n } placeholder="Entry Body"></textarea>
         <br />
-        <input ref={ n => image = n } placeholder="Add Links" />
         <DropZone />
         <button className="btn">Save</button>
       </form>
