@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions/journalentry';
+import DropZone from './DropZone';
 
 const JournalEntryForm = ({ dispatch }) => {
   let title, body, form, image;
@@ -22,6 +23,7 @@ const JournalEntryForm = ({ dispatch }) => {
         <textarea ref={ n => body = n } placeholder="Entry Body"></textarea>
         <br />
         <input ref={ n => image = n } placeholder="Add Links" />
+        <DropZone />
         <button className="btn">Save</button>
       </form>
     </div>

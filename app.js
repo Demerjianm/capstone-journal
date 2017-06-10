@@ -3,6 +3,7 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 
 //IMPORT LIBRARIES
@@ -48,6 +49,7 @@ passport.deserializeUser(User.deserializeUser());
 //AUTH ROUTES
 app.use('/api/auth', auth);
 app.use('/api/journal', entries);
+app.use('/api/imgupload', entries);
 
 app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
