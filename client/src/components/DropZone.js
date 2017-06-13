@@ -31,14 +31,18 @@
     state = { files: [] }
 
     onDrop = (files) => {
-      console.log(files)
+      this.props.setFileUploading();
       this.setState({
-        files: [ ...this.state.files, { name: files[0].name, size: files[0].size } ]
+        files: [ ...this.state.files, { name: files[0].name, size: files[0].size } ],
       });
+      request.post('/api/imgupload/upload/')
+            .attach('file', files[0])
+            .end((err, res) => {
+              this.props.setUrl(res.body.url);
+            });
     }
 
     render() {
-      console.log(this.state.files)
       return (
         <section>
           <div className="dropzone">
@@ -46,14 +50,6 @@
               <p>Try dropping some files here, or click to select files to upload.</p>
             </Dropzone>
           </div>
-          <aside>
-            <h2>Dropped files</h2>
-            <ul>
-              {
-                this.state.files.map((f,i) => <li key={i}>{f.name} - {f.size} bytes</li>)
-              }
-            </ul>
-          </aside>
         </section>
       );
     }

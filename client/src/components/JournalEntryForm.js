@@ -1,34 +1,72 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions/journalentry';
+import { Form, Image } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 import DropZone from './DropZone';
 
-const JournalEntryForm = ({ dispatch }) => {
-  let title, body, form, image;
+class JournalEntryForm extends React.Component {
+  defaults = { url: '', fileUploading: false, title: '', body: '' };
+  state = { ...this.defaults };
 
+  // TODO: make this a class not presentational
+  // set state of: { url: '' }
+  // function that takes a url and sets the state of that url
+  // setUrl = (url) => { this.setState( url )}
+  // pass the function down to the DropZone component
+  // once the image is dropped in the dropzone call this parent function to set the url
+  // dispatch the url along with title.value, body.value
 
-  return (
-    <div>
-      <h5 className="center">Add A Journal Entry</h5>
-      <form
-        ref={ n => form = n }
-        onSubmit={ e => {
-          e.preventDefault();
-          dispatch(addEntry(title.value, body.value))
-          form.reset();
-        }}
-      >
-        <input ref={ n => title = n } placeholder="Title" />
-        <br />
-        <textarea ref={ n => body = n } placeholder="Entry Body"></textarea>
-        <br />
-        <DropZone />
-        <button className="btn">Save</button>
-      </form>
-    </div>
-  )
+  setUrl = (url) => {
+    this.setState({ url, fileUploading: false });
+  }
+
+  setFileUploading = () => {
+    this.setState({ fileUploading: true });
+  }
+
+  setValue = (e) => {
+    let { target: { id, value } } = e;
+    this.setState({ [id]: value });
+  }
+
+  render () {
+    let { title, body, fileUploading, url } = this.state
+    return (
+      <div>
+        <h5 className="center">Add A Journal Entry</h5>
+        <Form loading={fileUploading}
+          onSubmit={ e => {
+            e.preventDefault();
+            this.props.dispatch(addEntry(title, body, url));
+            this.setState({ ...this.defaults });
+            // TODO: figure out where you want the user to go after successful journal entry create
+            this.props.history.push('/history');
+          }}
+        >
+          <Form.Field
+            id='title'
+            value={title}
+            onChange={this.setValue}
+            control='input'
+            placeholder='Title'
+          />
+          <Form.Field
+            id='body'
+            value={body}
+            onChange={this.setValue}
+            control='textarea'
+            placeholder='Entry Body'
+          />
+          <DropZone setUrl={this.setUrl} setFileUploading={this.setFileUploading} />
+          <Image src={url} size='tiny' />
+          <Form.Button className="btn">Save</Form.Button>
+        </Form>
+      </div>
+    )
+  }
 }
 
 // when you connect a component, you get dispatch as a prop
 // mapStateToProps - grabs state out of redux and passes it as props
-export default connect()(JournalEntryForm);
+export default withRouter(connect()(JournalEntryForm));

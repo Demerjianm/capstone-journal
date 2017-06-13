@@ -9,22 +9,25 @@ import Journal from './components/Journal'
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import JournalHistory from './components/JournalHistory'
+import { Container, Segment } from 'semantic-ui-react';
 
 const App = () => (
-  <div>
+  <Segment basic>
     <NavBar />
-    <FetchUser>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
-        <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
-        <ProtectedRoute path='/history' component={JournalHistory} />
-        <ProtectedRoute path="/journal" component={Journal} />
-        <Route component={NoMatch} />
-      </Switch>
-    </FetchUser>
-  </div>
+    <Container>
+      <FetchUser>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
+          <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
+          <ProtectedRoute path='/history' component={JournalHistory} />
+          <ProtectedRoute path="/journal" component={Journal} />
+          <Route component={NoMatch} />
+        </Switch>
+      </FetchUser>
+    </Container>
+  </Segment>
 );
 
 export default App;
