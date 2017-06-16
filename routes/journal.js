@@ -15,6 +15,12 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/top_five', (req, res) => {
+  Journal.find({}, null, {sort: {createdAt: -1}, limit: 5}, (err, entries) => {
+    res.json(entries);
+  })
+})
+
 
 // creating a new entry
 router.post('/', (req, res) => {
