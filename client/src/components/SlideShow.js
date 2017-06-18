@@ -23,7 +23,13 @@ class SlideShow extends Component {
   render() {
     console.log(this.props.topFive);
     return (
-        <Header>Hello</Header>
+      <Carousel ref="carousel" data={this.setCarouselData.bind(this, 'carousel')}>
+        <img src="http://res.cloudinary.com/journal-love/image/upload/v1497576672/fnou9dw9mzwfildhsax1.jpg"/>
+        <img src="http://res.cloudinary.com/journal-love/image/upload/v1497576672/fnou9dw9mzwfildhsax1.jpg"/>
+        <img src="http://res.cloudinary.com/journal-love/image/upload/v1497576672/fnou9dw9mzwfildhsax1.jpg"/>
+        <img src="http://res.cloudinary.com/journal-love/image/upload/v1497576672/fnou9dw9mzwfildhsax1.jpg"/>
+        <img src="http://res.cloudinary.com/journal-love/image/upload/v1497576672/fnou9dw9mzwfildhsax1.jpg"/>
+    </Carousel>
     )
   }
 };

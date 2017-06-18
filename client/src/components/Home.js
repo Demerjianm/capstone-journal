@@ -7,7 +7,6 @@ const Home = ({ username }) => (
   <div>
     <Header as="h3">
       { username ? `Welcome ${username}` : 'Welcome please sign in' }
-      {/* <SlideShow entry={ ['test':1] }/> */}
       <SlideShow />
     </Header>
   </div>
