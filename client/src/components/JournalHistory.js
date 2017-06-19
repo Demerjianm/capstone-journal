@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
+import { Header, Image, Icons } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -23,10 +23,11 @@ class JournalHistory extends Component {
             <h5>Body</h5>
             { ent.body }
             <h5>Img Links</h5>
+            <Image src={ent.image} size='tiny' />
             { ent.image }
             <div style={{ cursor: 'pointer' }}>
-                <i className="material-icons" onClick={() => this.toggleEdit(ent._id)}>edit</i>
-                <i className="material-icons" onClick={() => this.props.dispatch(deleteEntry(ent._id))}>Delete</i>
+                <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
+                <i className="big trash basic icon" onClick={() => this.props.dispatch(deleteEntry(ent._id))}></i>
             </div>
           </div>
         </li>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateEntry } from '../actions/journalentry';
+import { Image, Buttons, Form } from 'semantic-ui-react';
 
 class JournalEditForm extends Component {
   entry = this.props.entries.find( ent => ent._id === this.props.id);
@@ -19,11 +20,18 @@ render() {
           this.props.dispatch(updateEntry( _id , this.title.value, this.body.value, this.image.value))
         }}
       >
+        <div className='ui input'>
         <input ref={ n => this.title = n } defaultValue={title} />
+        </div>
+        <div className='ui input'>
         <textarea ref={ n => this.body = n } defaultValue={body} />
-        <input ref={ n => this.image = n } placeholder={image} />
-        <button className="btn">Save</button>
-        <button className='btn' onClick={() => this.props.toggleEdit()}>Back</button>
+        </div>
+        <Image src={image} size='medium' />
+        <div className='ui buttons'>
+          <button className='ui button' onClick={() => this.props.toggleEdit()}>Back</button>
+        <div className='or'></div>
+          <button className="ui button positive">Save</button>
+        </div>
       </form>
 
     </div>
