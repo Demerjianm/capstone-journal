@@ -23,6 +23,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
     "react-dropzone": "^3.13.2",
+    "react-responsive-carousel": "^3.1.19",
     "superagent": "^3.5.2"
   },
   "devDependencies": {
