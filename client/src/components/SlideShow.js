@@ -16,7 +16,7 @@ class SlideShow extends Component {
     const renderJournals = this.props.topFive.map(journal => {
       return (
         <div>
-          <Image cloudName="journal-love" publicId={journal.image} height="700" crop="crop" />
+          <Image cloudName="journal-love" publicId={journal.image} width="500" crop="crop" />
           <p className="legend">{journal.title}</p>
         </div>
       )
