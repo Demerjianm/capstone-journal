@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Image, Icons } from 'semantic-ui-react';
+import { Header, Image, Icons, List } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -17,18 +17,23 @@ class JournalHistory extends Component {
      return this.props.entry.map( ent => {
       return (
         <li key={ent._id} className="collection-item">
-          <div>
-          <h4>Title</h4>
-            { ent.title }
-            <h5>Body</h5>
-            { ent.body }
-            <h5>Img Links</h5>
-            <Image src={ent.image} size='tiny' />
-            { ent.image }
-            <div style={{ cursor: 'pointer' }}>
+          <div className='ui list'>
+            <div className='item'>
+              <h4>Title</h4>
+                { ent.title }
+            </div>
+            <div className='item'>
+              <h5>Body</h5>
+                { ent.body }
+            </div>
+            <div className='item'>
+              <h4>Images</h4>
+                <Image src={ent.image} size='tiny' />
+            </div>
+              <div style={{ cursor: 'pointer' }}>
                 <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
                 <i className="big trash basic icon" onClick={() => this.props.dispatch(deleteEntry(ent._id))}></i>
-            </div>
+              </div>
           </div>
         </li>
       )
@@ -41,9 +46,9 @@ class JournalHistory extends Component {
   }
 
   updateEntry = (title, body) => {
-  let { dispatch, entry, history } = this.props
-  dispatch(updateEntry(entry._id, title, body ))
-  history.push('/journal')
+    let { dispatch, entry, history } = this.props
+    dispatch(updateEntry(entry._id, title, body ))
+    history.push('/journal')
   }
 
   render() {
