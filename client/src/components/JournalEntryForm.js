@@ -9,14 +9,6 @@ class JournalEntryForm extends React.Component {
   defaults = { url: '', fileUploading: false, title: '', body: '' };
   state = { ...this.defaults };
 
-  // TODO: make this a class not presentational
-  // set state of: { url: '' }
-  // function that takes a url and sets the state of that url
-  // setUrl = (url) => { this.setState( url )}
-  // pass the function down to the DropZone component
-  // once the image is dropped in the dropzone call this parent function to set the url
-  // dispatch the url along with title.value, body.value
-
   setUrl = (url) => {
     this.setState({ url, fileUploading: false });
   }
@@ -40,8 +32,7 @@ class JournalEntryForm extends React.Component {
             e.preventDefault();
             this.props.dispatch(addEntry(title, body, url));
             this.setState({ ...this.defaults });
-            // TODO: figure out where you want the user to go after successful journal entry create
-            this.props.history.push('/history');
+            this.props.history.push('/');
           }}
         >
           <Form.Field
@@ -59,7 +50,7 @@ class JournalEntryForm extends React.Component {
             placeholder='Entry Body'
           />
           <DropZone setUrl={this.setUrl} setFileUploading={this.setFileUploading} />
-          <Image src={url} size='tiny' />
+          <Image src={url} size='large' />
           <Form.Button className="btn">Save</Form.Button>
         </Form>
       </div>
