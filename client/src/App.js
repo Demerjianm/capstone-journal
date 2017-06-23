@@ -5,7 +5,8 @@ import Home from './components/Home';
 import About from './components/About';
 import Auth from './components/Auth';
 import NoMatch from './components/NoMatch';
-import Journal from './components/Journal'
+import Journal from './components/Journal';
+import SingleEntry from './components/SingleEntry';
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import JournalHistory from './components/JournalHistory'
@@ -19,6 +20,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
+          <Route path="/singleentry" component={SingleEntry} />
           <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
           <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
           <ProtectedRoute path='/history' component={JournalHistory} />

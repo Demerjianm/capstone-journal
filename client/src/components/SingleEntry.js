@@ -4,9 +4,9 @@ import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import JournalEditForm from './JournalEditForm';
-import SingleEntry from './SingleEntry';
+import JournalHistory from './JournalHistory';
 
-class JournalHistory extends Component {
+class SingleEntry extends Component {
 
   state = { edit: false, id: ''}
 
@@ -14,33 +14,24 @@ class JournalHistory extends Component {
     this.props.dispatch(getEntries())
   }
 
-
   displayEntries = () => {
-     return this.props.entry.map( ent => {
+    const ent = this.props.ent._id
       return (
-        <li key={ent._id} className="collection-item">
-          <div className='ui list'>
-            <div style={{ cursor: 'pointer' }} className='item'>
-              <a href={"/SingleEntry/" + ent._id}>Title</a>
-                { ent.title }
-            </div>
-            <div className='item'>
-              <h5>Body</h5>
-                { ent.body }
-            </div>
+          <div className="container">
+            <h3>{this.props.ent.title}</h3>
+            <p>{this.props.ent.body}</p>
             <div className='item'>
               <h4>Images</h4>
-                <Image src={ent.image} size='tiny' />
+                <Image src={ent.image} size='medium' />
             </div>
               <div style={{ cursor: 'pointer' }}>
                 <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
                 <i className="big trash basic icon" onClick={() => this.props.dispatch(deleteEntry(ent._id))}></i>
               </div>
           </div>
-        </li>
       )
-    });
-  }
+    };
+
 
   toggleEdit = (id) => {
     this.setState({ edit: !this.state.edit, id });
@@ -64,10 +55,8 @@ class JournalHistory extends Component {
               />
     }
     return(
-      <div className='col s12 m6'>
-        <ul className='collection'>
-          { this.displayEntries() }
-        </ul>
+      <div className='container'>
+        {this.props.entry._id}
       </div>
     )
   }
@@ -77,4 +66,4 @@ const mapStateToProps = (state) => {
   return { entry: state.journal }
 }
 
-export default connect(mapStateToProps)(JournalHistory);
+export default connect(mapStateToProps)(SingleEntry)
