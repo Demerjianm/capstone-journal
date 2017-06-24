@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 import { logout } from '../actions/user';
 
 const links = [
@@ -62,9 +62,11 @@ class NavBar extends React.Component {
   }
 
   return (
-    <Menu>
-     { this.buildNavs(navs) }
-    </Menu>
+    <Segment inverted>
+      <Menu inverted pointing secondary>
+       { this.buildNavs(navs) }
+      </Menu>
+    </Segment>
   )
  }
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Header, Image as ImageComponent, Icon, List, Item, Label } from 'semantic-ui-react';
+import { Header, Image, Icons, List, Item, Label } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import JournalEditForm from './JournalEditForm'
+import JournalEditForm from './JournalEditForm';
+import SingleEntry from './SingleEntry';
 
 class JournalHistory extends Component {
 
@@ -14,13 +15,14 @@ class JournalHistory extends Component {
     this.props.dispatch(getEntries())
   }
 
+
   displayEntries = () => {
      return this.props.entry.map( ent => {
       return (
         // <li key={ent._id} className="collection-item">
         //   <div className='ui list'>
-        //     <div className='item'>
-        //       <h4>Title</h4>
+        //     <div style={{ cursor: 'pointer' }} className='item'>
+        //       <a href={"/SingleEntry/" + ent._id}>Title</a>
         //         { ent.title }
         //     </div>
         //     <div className='item'>
@@ -29,7 +31,7 @@ class JournalHistory extends Component {
         //     </div>
         //     <div className='item'>
         //       <h4>Images</h4>
-        //         <Image src={ent.image} size='small' />
+        //         <Image src={ent.image} size='tiny' />
         //     </div>
         //       <div style={{ cursor: 'pointer' }}>
         //         <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
@@ -43,7 +45,7 @@ class JournalHistory extends Component {
             <Item.Image size='small' src={ ent.image } />
 
             <Item.Content>
-              <Item.Header as='a'>{ ent.title }</Item.Header>
+              <Item.Header as='a' href={"/SingleEntry/" + ent._id}>{ ent.title }</Item.Header>
               <Item.Meta>
                 <Timestamp time={ ent.created_at } format="date" className='cinema' />
               </Item.Meta>

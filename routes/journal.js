@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
   });
 });
 
+// get the most recent five entries
 router.get('/top_five', (req, res) => {
   Journal.find({}, null, {sort: {createdAt: -1}, limit: 5}, (err, entries) => {
     res.json(entries);
