@@ -14,28 +14,27 @@ class SingleEntry extends Component {
     this.props.dispatch(getEntries())
   }
 
-  displayEntries = () => {
-    const ent = this.props.ent._id
+  displayEntry = () => {
+    return this.props.entry.filter( ent => {
       return (
-          <div className="container">
-            <h3>{this.props.ent.title}</h3>
-            <p>{this.props.ent.body}</p>
+        <div key={ent._id} className="container">
+          <h3>{ent.title}</h3>
+          <p>{ent.body}</p>
             <div className='item'>
               <h4>Images</h4>
                 <Image src={ent.image} size='medium' />
             </div>
-              <div style={{ cursor: 'pointer' }}>
-                <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-                <i className="big trash basic icon" onClick={() => this.props.dispatch(deleteEntry(ent._id))}></i>
-              </div>
+            <div style={{ cursor: 'pointer' }}>
+              <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
+              <i className="big trash basic icon" onClick={() => this.props.dispatch(deleteEntry(ent._id))}></i>
+            </div>
           </div>
-      )
-    };
-
+        )
+      })
+    }
 
   toggleEdit = (id) => {
-    this.setState({ edit: !this.state.edit, id });
-
+    this.setState({ edit: !this.state.edit, id })
   }
 
   updateEntry = (title, body) => {
@@ -44,22 +43,14 @@ class SingleEntry extends Component {
     history.push('/journal')
   }
 
-  render() {
-    let state = this.props
-
-    if(this.state.edit === true) {
-      return <JournalEditForm
-              id={this.state.id}
-              toggleEdit={this.toggleEdit}
-              updateEntry={this.updateEntry}
-              />
-    }
-    return(
-      <div className='container'>
-        {this.props.entry._id}
+  render () {
+    return (
+      <div>
+        <h3>hi</h3>
       </div>
     )
   }
+
 }
 
 const mapStateToProps = (state) => {
