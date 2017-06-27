@@ -20,7 +20,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/singleentry/:id" component={SingleEntry} />
+          <ProtectedRoute path="/singleentry/:id" component={SingleEntry} />
           <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
           <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
           <ProtectedRoute path='/history' component={JournalHistory} />

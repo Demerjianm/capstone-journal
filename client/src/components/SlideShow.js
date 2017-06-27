@@ -4,7 +4,6 @@ import { getFiveEntries } from '../actions/slideshow';
 import { Carousel } from 'react-responsive-carousel';
 import { Header } from 'semantic-ui-react';
 import { Image, Transformation } from 'cloudinary-react';
-import 'react-responsive-carousel/lib/styles/main.css';
 import 'react-responsive-carousel/lib/styles/carousel.css';
 
 class SlideShow extends Component {
@@ -16,8 +15,8 @@ class SlideShow extends Component {
     const renderJournals = this.props.topFive.map(journal => {
       return (
         <div>
-          <Image cloudName="journal-love" publicId={journal.image} width="500" crop="crop" />
           <p className="legend">{journal.title}</p>
+          <Image cloudName="journal-love" publicId={journal.image} width="500" height="700" crop="crop" />
         </div>
       )
     })

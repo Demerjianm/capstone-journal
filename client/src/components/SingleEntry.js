@@ -16,7 +16,6 @@ class SingleEntry extends Component {
 
   displayEntry = () => {
     let { entry: ent, dispatch } = this.props;
-
       return (
         <div className="container">
           <h3>{ent.title}</h3>
@@ -31,7 +30,6 @@ class SingleEntry extends Component {
             </div>
           </div>
         )
-
     }
 
   toggleEdit = (id) => {
