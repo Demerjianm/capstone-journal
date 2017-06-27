@@ -15,9 +15,10 @@ class SingleEntry extends Component {
   }
 
   displayEntry = () => {
-    return this.props.entry.filter( ent => {
+    let { entry: ent, dispatch } = this.props;
+
       return (
-        <div key={ent._id} className="container">
+        <div className="container">
           <h3>{ent.title}</h3>
           <p>{ent.body}</p>
             <div className='item'>
@@ -26,11 +27,11 @@ class SingleEntry extends Component {
             </div>
             <div style={{ cursor: 'pointer' }}>
               <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-              <i className="big trash basic icon" onClick={() => this.props.dispatch(deleteEntry(ent._id))}></i>
+              <i className="big trash basic icon" onClick={() => dispatch(deleteEntry(ent._id))}></i>
             </div>
           </div>
         )
-      })
+
     }
 
   toggleEdit = (id) => {
@@ -46,15 +47,16 @@ class SingleEntry extends Component {
   render () {
     return (
       <div>
-        <h3>hi</h3>
+        { this.displayEntry() }
       </div>
     )
   }
 
 }
 
-const mapStateToProps = (state) => {
-  return { entry: state.journal }
+const mapStateToProps = (state, props) => {
+  let entry = state.journal.find( j => j._id === props.match.params.id ) || {}
+  return { entry }
 }
 
 export default connect(mapStateToProps)(SingleEntry)
