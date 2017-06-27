@@ -46,7 +46,7 @@ class JournalHistory extends Component {
           <Item.Content>
             <Item.Header as='a' href={"/SingleEntry/" + ent._id}>{ ent.title }</Item.Header>
             <Item.Meta>
-              <Timestamp time={ ent.created_at } format="date" className='cinema' />
+              <Timestamp time={ ent.createdAt } format="date" className='cinema' />
             </Item.Meta>
             <Item.Description>{ ent.body }</Item.Description>
             <Item.Extra>

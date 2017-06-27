@@ -25,10 +25,14 @@ class SingleEntry extends Component {
           <hr />
           <br />
           <div className='item'>
-              <Image src={ent.image} size='large' />
+              <Image src={ent.image} size='large' center />
           </div>
           <br />
           <p>{ent.body}</p>
+            <div style={{ cursor: 'pointer' }}>
+              <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
+              <i className="big trash basic icon" onClick={() => dispatch(deleteEntry(ent._id))}></i>
+            </div>
           </div>
         )
 
