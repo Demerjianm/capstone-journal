@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Image, Icons, List } from 'semantic-ui-react';
+import Timestamp from 'react-timestamp';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -20,17 +21,14 @@ class SingleEntry extends Component {
       return (
         <div className="container">
           <h1>{ent.title}</h1>
+          <Timestamp time={ ent.created_at } format="date" className='cinema' />
           <hr />
           <br />
           <div className='item'>
-              <Image src={ent.image} size='medium' center />
+              <Image src={ent.image} size='large' />
           </div>
           <br />
           <p>{ent.body}</p>
-            <div style={{ cursor: 'pointer' }}>
-              <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-              <i className="big trash basic icon" onClick={() => dispatch(deleteEntry(ent._id))}></i>
-            </div>
           </div>
         )
 
