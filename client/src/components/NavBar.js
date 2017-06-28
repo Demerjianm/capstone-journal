@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Menu, Segment, Image } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 import { logout } from '../actions/user';
 
 const links = [

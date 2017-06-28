@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions/journalentry';
-import { Header, Form, Image, Container } from 'semantic-ui-react';
+import { Form, Image, Container } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import DropZone from './DropZone';
 

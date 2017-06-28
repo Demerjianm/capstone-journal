@@ -19,27 +19,6 @@ class JournalHistory extends Component {
   displayEntries = () => {
      return this.props.entry.map( ent => {
       return (
-        // <li key={ent._id} className="collection-item">
-        //   <div className='ui list'>
-        //     <div style={{ cursor: 'pointer' }} className='item'>
-        //       <a href={"/SingleEntry/" + ent._id}>Title</a>
-        //         { ent.title }
-        //     </div>
-        //     <div className='item'>
-        //       <h5>Body</h5>
-        //         { ent.body }
-        //     </div>
-        //     <div className='item'>
-        //       <h4>Images</h4>
-        //         <Image src={ent.image} size='tiny' />
-        //     </div>
-        //       <div style={{ cursor: 'pointer' }}>
-        //         <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-        //         <i className="big trash basic icon" onClick={() => this.props.dispatch(deleteEntry(ent._id))}></i>
-        //       </div>
-        //   </div>
-        // </li>
-
         <Item key={ent._id}>
           <Item.Image size='small' src={ ent.image } />
 
@@ -55,7 +34,6 @@ class JournalHistory extends Component {
             </Item.Extra>
           </Item.Content>
         </Item>
-
       )
     });
   }

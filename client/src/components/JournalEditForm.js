@@ -10,33 +10,7 @@ render() {
     let { title, body, image, _id } = this.entry
 
   return (
-    // <div>
-    //   <Header as='h2' textAlign='center'>Update your Journal Entry</Header>
-    //   <Form
-    //     ref={ n => this.form = n }
-    //     onSubmit={ e => {
-    //       e.preventDefault();
-    //       this.props.toggleEdit()
-    //       this.props.dispatch(updateEntry( _id , this.title.value, this.body.value, this.image.value))
-    //     }}
-    //   >
-    //     <div className='ui input'>
-    //     <input ref={ n => this.title = n } defaultValue={title} />
-    //     </div>
-    //     <div className='ui input'>
-    //     <textarea ref={ n => this.body = n } defaultValue={body} />
-    //     </div>
-    //     <Image src={image} size='medium' />
-    //     <div className='ui buttons'>
-    //       <button className='ui button' onClick={() => this.props.toggleEdit()}>Back</button>
-    //     <div className='or'></div>
-    //       <button className="ui button positive">Save</button>
-    //     </div>
-    //   </Form>
-    //
-    // </div>
-
-    <Container text>
+    <Container>
       <Header as='h2' textAlign='center'>Update Journal Entry</Header>
       <Form
         ref={ n => this.form = n }
@@ -48,13 +22,20 @@ render() {
           this.props.toggleEdit()
         }}
       >
-        <Form.Field>
-          Title:<Form.Input ref={ n => this.title = n } defaultValue={title} />
+        <Form.Field width={8}>
+          <label>Title</label>
+          <input ref={ n => this.title = n } defaultValue={title} />
         </Form.Field>
-        <Form.Field>
-          Entry:<Form.TextArea ref={ n => this.body = n } defaultValue={body} />
+        <Form.Field width={8}>
+          <label>Entry</label>
+          <textarea ref={ n => this.body = n } defaultValue={body} />
         </Form.Field>
-        <Button type='submit'>Submit</Button>
+        <Image src={image} size='medium' />
+        <div className='ui buttons'>
+          <button className='ui button' onClick={() => this.props.toggleEdit()}>Back</button>
+        <div className='or'></div>
+          <button className="ui button positive">Save</button>
+        </div>
       </Form>
     </Container>
     )
