@@ -50,7 +50,7 @@ class JournalEntryForm extends React.Component {
             placeholder='Entry Body'
           />
           <DropZone setUrl={this.setUrl} setFileUploading={this.setFileUploading} />
-          <Image src={url} size='large' />
+          <Image src={url} size='small' />
           <Form.Button className="btn">Save</Form.Button>
         </Form>
       </div>

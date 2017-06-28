@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Image, Icons, List } from 'semantic-ui-react';
+import Timestamp from 'react-timestamp';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -18,16 +19,15 @@ class SingleEntry extends Component {
     let { entry: ent, dispatch } = this.props;
       return (
         <div className="container">
-          <h3>{ent.title}</h3>
+          <h1>{ent.title}</h1>
+          <Timestamp time={ ent.created_at } format="date" className='cinema' />
+          <hr />
+          <br />
+          <div className='item'>
+              <Image src={ent.image} size='large' />
+          </div>
+          <br />
           <p>{ent.body}</p>
-            <div className='item'>
-              <h4>Images</h4>
-                <Image src={ent.image} size='medium' />
-            </div>
-            <div style={{ cursor: 'pointer' }}>
-              <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-              <i className="big trash basic icon" onClick={() => dispatch(deleteEntry(ent._id))}></i>
-            </div>
           </div>
         )
     }
@@ -43,6 +43,13 @@ class SingleEntry extends Component {
   }
 
   render () {
+    if(this.state.edit === true) {
+      return <JournalEditForm
+              id={this.state.id}
+              toggleEdit={this.toggleEdit}
+              updateEntry={this.updateEntry}
+              />
+    }
     return (
       <div>
         { this.displayEntry() }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Header, Image, Icons, List, Item, Label } from 'semantic-ui-react';
+import { Header, Image, Icons, List, Item, Label, Grid } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -40,23 +40,21 @@ class JournalHistory extends Component {
         //   </div>
         // </li>
 
-        <Item.Group divided>
-          <Item>
-            <Item.Image size='small' src={ ent.image } />
+        <Item key={ent._id}>
+          <Item.Image size='small' src={ ent.image } />
 
-            <Item.Content>
-              <Item.Header as='a' href={"/SingleEntry/" + ent._id}>{ ent.title }</Item.Header>
-              <Item.Meta>
-                <Timestamp time={ ent.created_at } format="date" className='cinema' />
-              </Item.Meta>
-              <Item.Description>{ ent.body }</Item.Description>
-              <Item.Extra>
-                <Label icon='edit' size='large' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
-                <Label icon='trash outline' size='large' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
-              </Item.Extra>
-            </Item.Content>
-          </Item>
-        </Item.Group>
+          <Item.Content>
+            <Item.Header as='a' href={"/SingleEntry/" + ent._id}>{ ent.title }</Item.Header>
+            <Item.Meta>
+              <Timestamp time={ ent.created_at } format="date" className='cinema' />
+            </Item.Meta>
+            <Item.Description>{ ent.body }</Item.Description>
+            <Item.Extra>
+              <Label icon='edit' size='large' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
+              <Label icon='trash outline' size='large' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
+            </Item.Extra>
+          </Item.Content>
+        </Item>
       )
     });
   }
@@ -84,9 +82,9 @@ class JournalHistory extends Component {
     }
     return(
       <div className='col s12 m6'>
-        <ul className='collection'>
+        <Item.Group divided>
           { this.displayEntries() }
-        </ul>
+        </Item.Group>
       </div>
     )
   }

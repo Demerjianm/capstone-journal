@@ -46,7 +46,7 @@
       return (
         <section>
           <div className="dropzone">
-            <Dropzone onDrop={this.onDrop}>
+            <Dropzone onDrop={this.onDrop} multiple={false}>
               <p>Try dropping some files here, or click to select files to upload.</p>
             </Dropzone>
           </div>
