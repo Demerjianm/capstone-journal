@@ -20,9 +20,9 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
-          <ProtectedRoute path="/singleentry/:id" component={SingleEntry} />
           <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
           <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
+          <ProtectedRoute path="/singleentry/:id" component={SingleEntry} />
           <ProtectedRoute path='/history' component={JournalHistory} />
           <ProtectedRoute path="/journal" component={Journal} />
           <Route component={NoMatch} />

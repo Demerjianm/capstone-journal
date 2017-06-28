@@ -15,6 +15,12 @@ class SingleEntry extends Component {
     this.props.dispatch(getEntries())
   }
 
+  onDelete = id => {
+    const { history, dispatch } = this.props;
+    dispatch(deleteEntry(id))
+    history.push('/history')
+  }
+
   displayEntry = () => {
     let { entry: ent, dispatch } = this.props;
       return (
@@ -30,7 +36,7 @@ class SingleEntry extends Component {
           <p>{ent.body}</p>
             <div style={{ cursor: 'pointer' }}>
               <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-              <i className="big trash basic icon" onClick={() => dispatch(deleteEntry(ent._id))}></i>
+              <i className="big trash basic icon" onClick={() => this.onDelete(ent._id)}></i>
             </div>
           </div>
         )
@@ -47,6 +53,7 @@ class SingleEntry extends Component {
   }
 
   render () {
+    console.log(this.props.history)
     let state = this.props
     return (
       <div>
