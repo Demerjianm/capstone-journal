@@ -47,16 +47,15 @@ class SingleEntry extends Component {
   }
 
   render () {
-    if(this.state.edit === true) {
-      return <JournalEditForm
-              id={this.state.id}
-              toggleEdit={this.toggleEdit}
-              updateEntry={this.updateEntry}
-              />
-    }
+    let state = this.props
     return (
       <div>
-        { this.displayEntry() }
+        {this.state.edit ?
+          <JournalEditForm
+            id={this.state.id}
+            toggleEdit={this.toggleEdit}
+            updateEntry={this.updateEntry}/>
+          : this.displayEntry() }
       </div>
     )
   }

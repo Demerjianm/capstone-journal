@@ -15,9 +15,11 @@ render() {
       <form
         ref={ n => this.form = n }
         onSubmit={ e => {
+          console.log(this.title)
+          console.log(this.body)
           e.preventDefault();
+          this.props.dispatch(updateEntry( _id , this.title.value, this.body.value, image))
           this.props.toggleEdit()
-          this.props.dispatch(updateEntry( _id , this.title.value, this.body.value, this.image.value))
         }}
       >
         <div className='ui input'>
