@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Header, Image, Icons, List, Item, Label, Grid } from 'semantic-ui-react';
+import { Header, Image, Icons, List, Item, Label, Grid, Container, Divider } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -55,6 +55,7 @@ class JournalHistory extends Component {
             </Item.Extra>
           </Item.Content>
         </Item>
+
       )
     });
   }
@@ -82,6 +83,8 @@ class JournalHistory extends Component {
     }
     return(
       <div className='col s12 m6'>
+        <Header as='h3' textAlign='center'>My Journal</Header>
+        <Divider />
         <Item.Group divided>
           { this.displayEntries() }
         </Item.Group>

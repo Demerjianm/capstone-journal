@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
+import { Header, Divider, Container } from 'semantic-ui-react';
 import { getEntries } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -30,20 +30,20 @@ class Journal extends Component {
 
   render() {
     return(
-      <div className='container'>
+      <Container>
       <div>
         <Header as="h2">{this.username}</Header>
         <Header as="h3">{this._id}</Header>
         <Header as="h3">{this.role}</Header>
       </div>
-        <h4>My Journal</h4>
-        <hr />
+        <Header as='h3'>Add Journal Entry</Header>
+        <Divider />
         <div className='row'>
           <div className='col s12 m6'>
             <JournalEntryForm />
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }

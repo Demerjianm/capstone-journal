@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions/journalentry';
-import { Form, Image } from 'semantic-ui-react';
+import { Header, Form, Image, Container } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import DropZone from './DropZone';
 
@@ -25,8 +25,7 @@ class JournalEntryForm extends React.Component {
   render () {
     let { title, body, fileUploading, url } = this.state
     return (
-      <div>
-        <h5 className="center">Add A Journal Entry</h5>
+      <Container>
         <Form loading={fileUploading}
           onSubmit={ e => {
             e.preventDefault();
@@ -35,25 +34,29 @@ class JournalEntryForm extends React.Component {
             this.props.history.push('/');
           }}
         >
-          <Form.Field
+          Title:<Form.Field
             id='title'
             value={title}
             onChange={this.setValue}
             control='input'
-            placeholder='Title'
+            placeholder='Journal Title'
+            required
+            width={8}
           />
-          <Form.Field
+          Entry:<Form.Field
             id='body'
             value={body}
             onChange={this.setValue}
             control='textarea'
-            placeholder='Entry Body'
+            placeholder='Journal Body'
+            required
+            width={8}
           />
-          <DropZone setUrl={this.setUrl} setFileUploading={this.setFileUploading} />
+          <DropZone required setUrl={this.setUrl} setFileUploading={this.setFileUploading} />
           <Image src={url} size='small' />
           <Form.Button className="btn">Save</Form.Button>
         </Form>
-      </div>
+      </Container>
     )
   }
 }
