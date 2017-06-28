@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Header } from 'semantic-ui-react';
+import { Header, Container } from 'semantic-ui-react';
 
 const About = ({ username }) => (
-  <div>
+  <Container>
     <Header as="h3">
-      { username ? `Welcome ${username}` : 'This is the About page' }
+      This is the about page.
     </Header>
-  </div>
+  </Container>
 )
 
 const mapStateToProps = (state) => {

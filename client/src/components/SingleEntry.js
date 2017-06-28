@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Image, Icons, List } from 'semantic-ui-react';
+import { Header, Image, Icons, List, Divider, Container, Item, Label } from 'semantic-ui-react';
 import Timestamp from 'react-timestamp';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
@@ -17,26 +17,26 @@ class SingleEntry extends Component {
 
   displayEntry = () => {
     let { entry: ent, dispatch } = this.props;
+
       return (
-        <div className="container">
-          <h1>{ent.title}</h1>
-          <Timestamp time={ ent.created_at } format="date" className='cinema' />
-          <hr />
-          <br />
-          <div className='item'>
-              <Image src={ent.image} size='large' center />
-          </div>
-          <br />
+        <Container text>
+          <Header as ='h1'>{ent.title}</Header>
+          <Timestamp time={ ent.createdAt } format="date" className='cinema' />
+          <Divider />
+          <Item>
+              <Image src={ent.image} size='large' centered />
+          </Item>
+          <Divider />
           <p>{ent.body}</p>
             <div style={{ cursor: 'pointer' }}>
-              <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-              <i className="big trash basic icon" onClick={() => dispatch(deleteEntry(ent._id))}></i>
+              <Label icon='edit' size='large' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
+              <Label icon='trash outline' size='large' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
             </div>
-          </div>
+          </Container>
         )
     }
 
-  toggleEdit = (id) => {
+    toggleEdit = (id) => {
     this.setState({ edit: !this.state.edit, id })
   }
 
