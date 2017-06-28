@@ -53,7 +53,6 @@ class SingleEntry extends Component {
   }
 
   render () {
-    console.log(this.props.history)
     let state = this.props
     return (
       <div>
