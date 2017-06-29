@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Header, Image, Icons, List, Item, Label, Grid, Container, Divider } from 'semantic-ui-react';
+import { Header, Image, Icons, Item, Button, Divider } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -28,9 +28,10 @@ class JournalHistory extends Component {
               <Timestamp time={ ent.created_at } format="date" className='cinema' />
             </Item.Meta>
             <Item.Description>{ ent.body }</Item.Description>
+            <br />
             <Item.Extra>
-              <Label icon='edit' size='large' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
-              <Label icon='trash outline' size='large' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
+              <Button basic color='black' icon='edit' labelPosition='left' size='small' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
+              <Button basic color='red' icon='trash outline' labelPosition='left' size='small' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
             </Item.Extra>
           </Item.Content>
         </Item>

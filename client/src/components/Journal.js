@@ -36,7 +36,7 @@ class Journal extends Component {
         <Header as="h3">{this._id}</Header>
         <Header as="h3">{this.role}</Header>
       </div>
-        <Header as='h3'>Add Journal Entry</Header>
+        <Header as='h3' textAlign='center'>Add Journal Entry</Header>
         <Divider />
         <div className='row'>
           <div className='col s12 m6'>

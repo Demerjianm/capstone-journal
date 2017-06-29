@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions/journalentry';
-import { Form, Image, Container } from 'semantic-ui-react';
+import { Form, Image, Container, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import DropZone from './DropZone';
 
@@ -24,8 +24,9 @@ class JournalEntryForm extends React.Component {
 
   render () {
     let { title, body, fileUploading, url } = this.state
+
     return (
-      <Container>
+      <Container text>
         <Form loading={fileUploading}
           onSubmit={ e => {
             e.preventDefault();
@@ -41,7 +42,6 @@ class JournalEntryForm extends React.Component {
             control='input'
             placeholder='Journal Title'
             required
-            width={8}
           />
           Entry:<Form.Field
             id='body'
@@ -50,11 +50,10 @@ class JournalEntryForm extends React.Component {
             control='textarea'
             placeholder='Journal Body'
             required
-            width={8}
           />
-          <DropZone required setUrl={this.setUrl} setFileUploading={this.setFileUploading} />
+          <DropZone setUrl={this.setUrl} setFileUploading={this.setFileUploading} />
           <Image src={url} size='small' />
-          <Form.Button className="btn">Save</Form.Button>
+          <Button basic color='green' content='Save' icon='save' labelPosition='left' />
         </Form>
       </Container>
     )

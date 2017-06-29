@@ -1,7 +1,8 @@
 import React from 'react';
-import { Header, Form, Button, Container } from 'semantic-ui-react';
+import { Header, Form, Button, Container, Image } from 'semantic-ui-react';
 import { authenticate } from '../actions/user';
 import { connect } from 'react-redux';
+import JL_Logo from '../images/JL_Logo.jpg'
 
 class Auth extends React.Component {
   defaults = { email: '', password: '' }
@@ -23,7 +24,8 @@ class Auth extends React.Component {
     let { title } = this.props;
     let { email, password } = this.state;
     return (
-      <Container>
+      <Container text>
+        <Image src={JL_Logo} centered size='medium' />
         <Header as="h3">{title}</Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
@@ -33,7 +35,6 @@ class Auth extends React.Component {
             type="email"
             onChange={this.handleChange}
             value={email}
-            width={8}
           />
           <Form.Input
             id="password"
@@ -42,9 +43,8 @@ class Auth extends React.Component {
             type="password"
             onChange={this.handleChange}
             value={password}
-            width={8}
           />
-          <Button>Submit</Button>
+          <Button basic color='black' content='Login' />
         </Form>
       </Container>
     )

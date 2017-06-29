@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Image, Divider, Container, Item, Label } from 'semantic-ui-react';
+import { Header, Image, Divider, Container, Item, Button } from 'semantic-ui-react';
 import Timestamp from 'react-timestamp';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
@@ -22,18 +22,17 @@ class SingleEntry extends Component {
         let string = ent.body.trim().replace(/\n/, '<br />');
         return (
           <Container text>
-            <Header as ='h1'>{ent.title}</Header>
+            <Header as ='h2'>{ent.title}</Header>
             <Timestamp time={ ent.createdAt } format="date" className='cinema' />
             <Divider />
             <Item>
                 <Image src={ent.image} size='large' centered />
             </Item>
             <Divider />
-            <div>{body}</div>
-              <div style={{ cursor: 'pointer' }}>
-                <Label icon='edit' size='large' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
-                <Label icon='trash outline' size='large' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
-              </div>
+            <p>{body}</p>
+            <Divider  />
+            <Button basic color='black' icon='edit' labelPosition='left' size='small' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
+            <Button basic color='red' icon='trash outline' labelPosition='left' size='small' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
             </Container>
           )
       }

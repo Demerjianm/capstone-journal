@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Menu, Segment } from 'semantic-ui-react';
+import { Menu, Segment, Image } from 'semantic-ui-react';
 import { logout } from '../actions/user';
+import JL_Header from '../images/JL_Header.jpg';
 
 const links = [
   { name: 'Home', path: '/' },
@@ -64,6 +65,7 @@ class NavBar extends React.Component {
   return (
     <Segment inverted>
       <Menu inverted pointing secondary>
+       <Image src={JL_Header} height={60} />
        { this.buildNavs(navs) }
       </Menu>
     </Segment>
