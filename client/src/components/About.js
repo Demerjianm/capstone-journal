@@ -7,7 +7,7 @@ const About = ({ username }) => (
   <Container text>
     <Image src={JL_Logo} centered size='medium' />
     <Divider />
-    <Header as="h1" textAlign='center'>About Journal Love</Header>
+    <Header as="h2" textAlign='center'>About Journal Love</Header>
   </Container>
 )
 

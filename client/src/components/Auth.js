@@ -26,7 +26,7 @@ class Auth extends React.Component {
     return (
       <Container text>
         <Image src={JL_Logo} centered size='medium' />
-        <Header as="h3">{title}</Header>
+        <Header as="h2" textAlign='center'>{title}</Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
             id="email"
