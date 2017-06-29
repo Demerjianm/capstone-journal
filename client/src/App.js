@@ -18,10 +18,10 @@ const App = () => (
     <Container>
       <FetchUser>
         <Switch>
-          <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/register" render={ (props) => <Auth {...props} title="Register" /> } />
           <Route path="/login" render={ (props) => <Auth {...props} title="Login" /> } />
+          <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute path="/singleentry/:id" component={SingleEntry} />
           <ProtectedRoute path='/history' component={JournalHistory} />
           <ProtectedRoute path="/journal" component={Journal} />
