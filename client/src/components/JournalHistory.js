@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Header, Image, Icons, List, Item, Label, Grid } from 'semantic-ui-react';
+import { Header, Image, Icons, Item, Button, Divider } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -19,27 +19,6 @@ class JournalHistory extends Component {
   displayEntries = () => {
      return this.props.entry.map( ent => {
       return (
-        // <li key={ent._id} className="collection-item">
-        //   <div className='ui list'>
-        //     <div style={{ cursor: 'pointer' }} className='item'>
-        //       <a href={"/SingleEntry/" + ent._id}>Title</a>
-        //         { ent.title }
-        //     </div>
-        //     <div className='item'>
-        //       <h5>Body</h5>
-        //         { ent.body }
-        //     </div>
-        //     <div className='item'>
-        //       <h4>Images</h4>
-        //         <Image src={ent.image} size='tiny' />
-        //     </div>
-        //       <div style={{ cursor: 'pointer' }}>
-        //         <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-        //         <i className="big trash basic icon" onClick={() => this.props.dispatch(deleteEntry(ent._id))}></i>
-        //       </div>
-        //   </div>
-        // </li>
-
         <Item key={ent._id}>
           <Item.Image size='small' src={ ent.image } />
 
@@ -49,9 +28,10 @@ class JournalHistory extends Component {
               <Timestamp time={ ent.created_at } format="date" className='cinema' />
             </Item.Meta>
             <Item.Description>{ ent.body }</Item.Description>
+            <br />
             <Item.Extra>
-              <Label icon='edit' size='large' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
-              <Label icon='trash outline' size='large' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
+              <Button basic color='black' icon='edit' labelPosition='left' size='small' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
+              <Button basic color='red' icon='trash outline' labelPosition='left' size='small' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
             </Item.Extra>
           </Item.Content>
         </Item>
@@ -82,6 +62,8 @@ class JournalHistory extends Component {
     }
     return(
       <div className='col s12 m6'>
+        <Header as='h3' textAlign='center'>My Journal</Header>
+        <Divider />
         <Item.Group divided>
           { this.displayEntries() }
         </Item.Group>

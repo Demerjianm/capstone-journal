@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateEntry } from '../actions/journalentry';
-import { Image, Buttons, Form } from 'semantic-ui-react';
+import { Header, Image, Button, Form, Container, Label } from 'semantic-ui-react';
 
 class JournalEditForm extends Component {
   entry = this.props.entries.find( ent => ent._id === this.props.id);
@@ -10,9 +10,9 @@ render() {
     let { title, body, image, _id } = this.entry
 
   return (
-    <div>
-      <h5 className="center">Update your Journal Entry</h5>
-      <form
+    <Container text>
+      <Header as='h2' textAlign='center'>Update Journal Entry</Header>
+      <Form
         ref={ n => this.form = n }
         onSubmit={ e => {
           e.preventDefault();
@@ -20,21 +20,19 @@ render() {
           this.props.toggleEdit()
         }}
       >
-        <div className='ui input'>
-        <input ref={ n => this.title = n } defaultValue={title} />
-        </div>
-        <div className='ui input'>
-        <textarea ref={ n => this.body = n } defaultValue={body} />
-        </div>
-        <Image src={image} size='medium' />
-        <div className='ui buttons'>
-          <button className='ui button' onClick={() => this.props.toggleEdit()}>Back</button>
-        <div className='or'></div>
-          <button className="ui button positive">Save</button>
-        </div>
-      </form>
-
-    </div>
+        <Form.Field>
+          <label>Title</label>
+          <input ref={ n => this.title = n } defaultValue={title} />
+        </Form.Field>
+        <Form.Field>
+          <label>Entry</label>
+          <textarea ref={ n => this.body = n } defaultValue={body} />
+        </Form.Field>
+      
+          <Button basic color='black' content='Cancel' icon='cancel' labelPosition='left' onClick={() => this.props.toggleEdit()} />
+          <Button basic color='green' content='Save' icon='save' labelPosition='left' floated='right' />
+      </Form>
+    </Container>
     )
   }
 }

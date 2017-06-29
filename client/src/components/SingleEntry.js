@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Header, Image, Icons, List } from 'semantic-ui-react';
+import { Header, Image, Divider, Container, Item, Button } from 'semantic-ui-react';
 import Timestamp from 'react-timestamp';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import JournalEditForm from './JournalEditForm';
-import JournalHistory from './JournalHistory';
 
 class SingleEntry extends Component {
 
@@ -15,34 +13,32 @@ class SingleEntry extends Component {
     this.props.dispatch(getEntries())
   }
 
-  onDelete = id => {
-    const { history, dispatch } = this.props;
-    dispatch(deleteEntry(id))
-    history.push('/history')
-  }
-
   displayEntry = () => {
     let { entry: ent, dispatch } = this.props;
-      return (
-        <div className="container">
-          <h1>{ent.title}</h1>
-          <Timestamp time={ ent.created_at } format="date" className='cinema' />
-          <hr />
-          <br />
-          <div className='item'>
-              <Image src={ent.image} size='large' center />
-          </div>
-          <br />
-          <p>{ent.body}</p>
-            <div style={{ cursor: 'pointer' }}>
-              <i className="big edit icon" onClick={() => this.toggleEdit(ent._id)}></i>
-              <i className="big trash basic icon" onClick={() => this.onDelete(ent._id)}></i>
-            </div>
-          </div>
-        )
+
+      if (ent.body) {
+        console.log(ent.body)
+        let body = ent.body.split('\n').map( b => b === '' ? <br /> : b);
+        let string = ent.body.trim().replace(/\n/, '<br />');
+        return (
+          <Container text>
+            <Header as ='h2'>{ent.title}</Header>
+            <Timestamp time={ ent.createdAt } format="date" className='cinema' />
+            <Divider />
+            <Item>
+                <Image src={ent.image} size='large' centered />
+            </Item>
+            <Divider />
+            <p>{body}</p>
+            <Divider  />
+            <Button basic color='black' icon='edit' labelPosition='left' size='small' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
+            <Button basic color='red' icon='trash outline' labelPosition='left' size='small' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
+            </Container>
+          )
+      }
     }
 
-  toggleEdit = (id) => {
+    toggleEdit = (id) => {
     this.setState({ edit: !this.state.edit, id })
   }
 
@@ -65,7 +61,6 @@ class SingleEntry extends Component {
       </div>
     )
   }
-
 }
 
 const mapStateToProps = (state, props) => {
