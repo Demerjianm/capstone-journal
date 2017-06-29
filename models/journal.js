@@ -6,7 +6,7 @@ const Journal = new Schema({
   body: String,
   createdAt: { type: Date, default: Date.now() },
   updatedAt: { type: Date, default: Date.now() },
-  image: String,
+  image: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Journal', Journal);
