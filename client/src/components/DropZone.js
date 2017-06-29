@@ -19,10 +19,22 @@
     }
 
     render() {
+      const dropZoneStyle = {
+        position: 'left',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        padding: '2.5em 0',
+        background: 'rgba(0,0,0,0.5)',
+        textAlign: 'center',
+        color: '#fff'
+      }
+
       return (
         <section>
           <div className="dropzone">
-            <Dropzone onDrop={this.onDrop} multiple={false}>
+            <Dropzone  style={dropZoneStyle} onDrop={this.onDrop} multiple={false}>
               <p>Try dropping a file here, or click to select a file to upload.</p>
             </Dropzone>
           </div>
