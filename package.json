@@ -27,9 +27,7 @@
     "react-timestamp": "^4.2.1",
     "semantic": "^0.0.1",
     "semantic-ui-css": "^2.2.10",
-    "superagent": "^3.5.2"
-  },
-  "devDependencies": {
+    "superagent": "^3.5.2",
     "dotenv": "^4.0.0"
   }
 }
