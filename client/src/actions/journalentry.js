@@ -52,6 +52,6 @@ export const deleteEntry = (id) => {
   }
 }
 
-export const imgUpload = () => {
-
-}
+// export const imgUpload = () => {
+//
+// }

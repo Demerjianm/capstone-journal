@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Header, Image, Icons, Item, Button, Divider } from 'semantic-ui-react';
+import { Header, Item, Button, Divider } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import JournalEditForm from './JournalEditForm';
-import SingleEntry from './SingleEntry';
 
 class JournalHistory extends Component {
 
@@ -51,8 +49,6 @@ class JournalHistory extends Component {
   }
 
   render() {
-    let state = this.props
-
     if(this.state.edit === true) {
       return <JournalEditForm
               id={this.state.id}
