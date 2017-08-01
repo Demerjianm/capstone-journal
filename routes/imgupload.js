@@ -19,7 +19,7 @@ router.post('/upload', upload.single('file'), (req, res) => {
       return res.json({ "url": uploadResponse.url });
     })
     .catch(function(err){
-        return res.json(err);
+        return res.json(err); 
     });
 });
 
