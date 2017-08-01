@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Header, Image, Icons, Item, Button, Divider } from 'semantic-ui-react';
+import { Header, Item, Button, Divider } from 'semantic-ui-react';
 import { getEntries, updateEntry, deleteEntry } from '../actions/journalentry';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import JournalEditForm from './JournalEditForm';
-import SingleEntry from './SingleEntry';
 
 class JournalHistory extends Component {
 
@@ -30,8 +28,25 @@ class JournalHistory extends Component {
             <Item.Description>{ ent.body }</Item.Description>
             <br />
             <Item.Extra>
-              <Button basic color='black' icon='edit' labelPosition='left' size='small' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
-              <Button basic color='red' icon='trash outline' labelPosition='left' size='small' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
+              <Button
+                basic
+                color='black'
+                icon='edit'
+                labelPosition='left'
+                size='small'
+                onClick={() => this.toggleEdit(ent._id)}
+                content='Edit'
+              />
+              <Button
+                basic
+                color='red'
+                icon='trash outline'
+                labelPosition='left'
+                size='small'
+                floated='right'
+                onClick={() => this.props.dispatch(deleteEntry(ent._id, this.props.history))}
+                content='Delete'
+              />
             </Item.Extra>
           </Item.Content>
         </Item>
@@ -51,8 +66,6 @@ class JournalHistory extends Component {
   }
 
   render() {
-    let state = this.props
-
     if(this.state.edit === true) {
       return <JournalEditForm
               id={this.state.id}

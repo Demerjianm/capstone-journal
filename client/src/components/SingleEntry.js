@@ -14,12 +14,10 @@ class SingleEntry extends Component {
   }
 
   displayEntry = () => {
-    let { entry: ent, dispatch } = this.props;
+    let { entry: ent } = this.props;
 
       if (ent.body) {
-        console.log(ent.body)
-        let body = ent.body.split('\n').map( b => b === '' ? <br /> : b);
-        let string = ent.body.trim().replace(/\n/, '<br />');
+        let body = ent.body.split('\n').map( (b, i) => b === '' ? <br key={i} /> : b);
         return (
           <Container text>
             <Header as ='h2'>{ent.title}</Header>
@@ -31,10 +29,27 @@ class SingleEntry extends Component {
             <Divider />
             <p>{body}</p>
             <Divider  />
-            <Button basic color='black' icon='edit' labelPosition='left' size='small' onClick={() => this.toggleEdit(ent._id)} content='Edit' />
-            <Button basic color='red' icon='trash outline' labelPosition='left' size='small' floated='right' onClick={() => this.props.dispatch(deleteEntry(ent._id))} content='Delete' />
-            </Container>
-          )
+            <Button
+              basic
+              color='black'
+              icon='edit'
+              labelPosition='left'
+              size='small'
+              onClick={() => this.toggleEdit(ent._id)}
+              content='Edit'
+            />
+            <Button
+              basic
+              color='red'
+              icon='trash outline'
+              labelPosition='left'
+              size='small'
+              floated='right'
+              onClick={() => this.props.dispatch(deleteEntry(ent._id, this.props.history))}
+              content='Delete'
+            />
+          </Container>
+        )
       }
     }
 
@@ -49,7 +64,6 @@ class SingleEntry extends Component {
   }
 
   render () {
-    let state = this.props
     return (
       <div>
         {this.state.edit ?
